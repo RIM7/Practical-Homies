@@ -23,7 +23,7 @@ class Laser_Diffraction():
             x_inc += 2.4
 
     def ok_clicked(self):
-        if self.x_entry.get()!='' and self.e.get()!='':
+        if self.x_entry.get()!='':
             self.canvas2.delete("all")
             self.on()
 
@@ -45,7 +45,7 @@ class Laser_Diffraction():
             #sin_theta = 1 * 300/0.1 * 7/10**5; cos_theta = (1-sin_theta**2)**0.5; d1 = x * sin_theta / cos_theta
             #sin_theta = (1 * 300/0.1 * 7/10**5)
 
-            sin_theta = (1 * 300/0.1 * (float(self.e.get())/100)/10**5)
+            sin_theta = (1 * 300/0.1 * (700/100)/10**5)
 
             d1 = float(self.x_entry.get()) * sin_theta / (1-sin_theta**2)**0.5
             d2 = float(self.x_entry.get()) * 2 * sin_theta / (1-4 * sin_theta**2)**0.5
@@ -103,9 +103,9 @@ class Laser_Diffraction():
         Label(self.canvas1, text='Enter the value of x(in cm):', font=('Courier', 12, 'bold'), bg='lemon chiffon').place(x=30, y=60)
         self.x_entry=Entry(self.canvas1, bd=4, width=6, relief=tk.FLAT, font=('Courier',12,'bold')); self.x_entry.pack(); self.x_entry.place(x=320, y=60)
 
-        Label(self.canvas1, text='Enter the value of lambda:  ', font=('Courier', 12, 'bold'), bg='lemon chiffon').place(x=30, y=100)
-        self.e=Entry(self.canvas1, bd=4 , width=6, relief=tk.FLAT, font=('Courier', 12, 'bold')); self.e.pack(); self.e.place(x=320 , y=100)
-        self.e.insert(0,'700')
+        #Label(self.canvas1, text='Enter the value of lambda:  ', font=('Courier', 12, 'bold'), bg='lemon chiffon').place(x=30, y=100)
+        #self.e=Entry(self.canvas1, bd=4 , width=6, relief=tk.FLAT, font=('Courier', 12, 'bold')); self.e.pack(); self.e.place(x=320 , y=100)
+        #self.e.insert(0,'700')
 
         self.l=Label(self.canvas1,text='Other parameters to be assumed:\n',font=('Courier',12,'bold'),bg='peach puff3',justify='left')
         self.l.place(x=30,y=180); f = font.Font(self.l, self.l.cget("font")); f.configure(underline=True); self.l.configure(font=f)
