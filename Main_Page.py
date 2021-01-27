@@ -5,6 +5,8 @@ from time import sleep
 
 from Mod_of_Rigidity_Static_Method import Modulus_of_Rigidity_Static
 from Tortional_Pendulum_Simulation import Tortional_Pendulum
+from Vernier_Callipers_main import Vernier_Callipers_Main
+from Screw_Gauge_main import Screw_Gauge_Main
 from Laser_Diffraction import Laser_Diffraction
 from Resistivity_by_Four_Probe import Resistance_by_four_probe
 from Frank_Hertz import Frank_Hertz
@@ -17,6 +19,8 @@ class HomePage():
 	    if exp=='Laser Diffraction': laser_diff = Laser_Diffraction(self.root)
 	    if exp=='Four Probe':        res_by_four_probe = Resistance_by_four_probe(self.root)
 	    if exp=='Frank-Hertz':       frank_hertz = Frank_Hertz(self.root)
+	    if exp=='Vernier Callipers': vern_cal = Vernier_Callipers_Main(self.root)
+	    if exp=='Screw Gauge':		 scr_gauge= Screw_Gauge_Main(self.root)
 	    if exp=='Credits':			 credits = Credits(self.root)
 	    
 	def __init__(self):
@@ -56,10 +60,15 @@ class HomePage():
 		self.c=Button(self.canvas,text="Frank-Hertz",width=18,height=3,justify='center',bg='white',command=lambda:self.exp_exec('Frank-Hertz'))
 		self.c.config(font=("Courier",12,'bold'));self.c.pack();self.c.place(x=460,y=180)
 
-		self.d=Button(self.canvas,text="Determination of\nspecific charge \n(e/m) by\nJ.J. Thomson’s\nmethod\n(coming soon)",width=19,height=12,justify='center',bg='white',
-			command=lambda:self.exp_exec('Thomson’s (e/m)'))
-		self.d.config(font=("Courier",12,'bold'));self.d.pack();self.d.place(x=658,y=180)
-		self.d['state']='disabled'
+		#self.d=Button(self.canvas,text="Determination of\nspecific charge \n(e/m) by\nJ.J. Thomson’s\nmethod\n(coming soon)",width=19,height=12,justify='center',bg='white',
+		#	command=lambda:self.exp_exec('Thomson’s (e/m)'))
+		#self.d.config(font=("Courier",12,'bold'));self.d.pack();self.d.place(x=658,y=180) #self.d['state']='disabled'
+
+		self.d1=Button(self.canvas,text="Vernier Callipers",width=19,height=5,justify='center',bg='white', command=lambda:self.exp_exec('Vernier Callipers'))
+		self.d1.config(font=("Courier",12,'bold'));self.d1.pack();self.d1.place(x=658,y=180)
+		
+		self.d2=Button(self.canvas,text="Screw Gauge",width=19,height=5,justify='center',bg='white', command=lambda:self.exp_exec('Screw Gauge'))
+		self.d2.config(font=("Courier",12,'bold'));self.d2.pack();self.d2.place(x=658,y=290)
 
 		self.e=Button(self.canvas,text="Determination of \ncharge carrier \ndensity-\nHall Effect \nexperiment\n(coming soon)",width=18,height=12, justify='center',
 			bg='white',command=lambda:self.exp_exec('Hall Effect'))
