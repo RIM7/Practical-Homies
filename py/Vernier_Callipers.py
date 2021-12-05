@@ -9,7 +9,7 @@ from os import startfile
 class Vernier_Callipers():
 
 	def instr_window(self):
-		startfile('Vernier Callipers.pdf')
+		startfile('..\\pdfs\\Vernier Callipers.pdf')
 		#webbrowser.open("https://www.youtube.com/watch?v=07d2dXHYb94", new=1)
 
 	def direction_button(self,direction):
@@ -22,13 +22,16 @@ class Vernier_Callipers():
         #global useless_ax, useless_ay, useless_bx, useless_by, useless_cx, useless_cy, useless_dx, useless_dy
         
 		if self.which_opt == 'width':
-			self.vern_canvas.create_oval(145, 245, 145+self.dia, 275);
-			self.vern_canvas.create_line(145, 260, 145, 360); self.vern_canvas.create_line(145+self.dia, 260, 145+self.dia, 360);
+			self.vern_canvas.create_oval(145, 245, 145+self.dia, 275)
+			self.vern_canvas.create_line(145, 260, 145, 360) 
+			self.vern_canvas.create_line(145+self.dia, 260, 145+self.dia, 360)
 			self.vern_canvas.create_oval(145, 345, 145+self.dia, 375)
 			self.x_stop_left = 145+ self.dia
+
 		elif self.which_opt == 'height':
 			self.vern_canvas.create_oval(145-15, 310-40, 145+15, 310+40)
-			self.vern_canvas.create_line(145, 270, 145+self.hig, 270); self.vern_canvas.create_line(145, 350, 145+self.hig, 350); 
+			self.vern_canvas.create_line(145, 270, 145+self.hig, 270) 
+			self.vern_canvas.create_line(145, 350, 145+self.hig, 350) 
 			self.vern_canvas.create_oval(145+self.hig-15, 310-40, 145+self.hig+15, 310+40)
 			self.x_stop_left = 145+ self.hig
         #except: pass
@@ -37,27 +40,46 @@ class Vernier_Callipers():
 		if direction=='left':
 			if self.x_stop_right >= self.gx:  self.right['state'] = 'normal'
 			if self.x_stop_left+1 >= self.gx: self.left['state']  = 'disabled'
+
 			self.arc_x0-=1; self.arc_x1-=1
-			self.ax-=1; self.bx-=1; self.cx-=1; self.dx-=1; self.ex-=1; self.fx-=1; self.gx-=1; self.hx-=1; self.ix-=1; self.jx-=1;
+
+			self.ax-=1; self.bx-=1; self.cx-=1; 
+			self.dx-=1; self.ex-=1; self.fx-=1; 
+			self.gx-=1; self.hx-=1; self.ix-=1; self.jx-=1;
+			
 			self.x1_vern-=1; self.x2_vern-=1; self.x_vern_inc = 0;
+
 			self.useless_ax-=1; self.useless_bx-=1; self.useless_cx-=1; self.useless_dx-=1; 
+
 		elif direction=='right':
 			if self.x_stop_left <= self.gx+1: self.left['state'] = 'normal'
 			if self.x_stop_right<= self.gx:   self.right['state'] = 'disabled'
+			
 			self.arc_x0+=1; self.arc_x1+=1
-			self.ax+=1; self.bx+=1; self.cx+=1; self.dx+=1; self.ex+=1; self.fx+=1; self.gx+=1; self.hx+=1; self.ix+=1; self.jx+=1;
+			
+			self.ax+=1; self.bx+=1; self.cx+=1; 
+			self.dx+=1; self.ex+=1; self.fx+=1; 
+			self.gx+=1; self.hx+=1; self.ix+=1; self.jx+=1;
+
 			self.x1_vern+=1; self.x2_vern+=1; self.x_vern_inc = 0;
+
 			self.useless_ax+=1; self.useless_bx+=1; self.useless_cx+=1; self.useless_dx+=1; 
 	        
 	    #static part
 		self.vern_canvas.create_arc(70, 50, 140, 190, start = 0)
-		self.vern_canvas.create_line(self.px1,self.py1, self.px2,self.py2,self.px3,self.py3,self.px4,self.py4,self.px5,self.py5,self.px6,self.py6,self.px7,self.py7,self.px8,self.py8,self.px4,self.py4,self.px9,self.py9,self.px1,self.py1,width=1.4)
+		self.vern_canvas.create_line(self.px1,self.py1, self.px2,self.py2,self.px3,
+			self.py3,self.px4,self.py4,self.px5,self.py5,self.px6,self.py6,self.px7,
+			self.py7,self.px8,self.py8,self.px4,self.py4,self.px9,self.py9,self.px1,self.py1,width=1.4)
+
 		self.x_cm_inc = 0
+
 		for i in range(60):
 			if i%10==0:             self.vern_canvas.create_line(200 + self.x_cm_inc, 140, 200 + self.x_cm_inc, 120); self.x_cm_inc += 12.7
 			elif i%10 in (2,4,6,8): self.vern_canvas.create_line(200 + self.x_cm_inc, 130, 200 + self.x_cm_inc, 120); self.x_cm_inc += 12.7
 			else:                   self.vern_canvas.create_line(200 + self.x_cm_inc, 125, 200 + self.x_cm_inc, 120); self.x_cm_inc += 12.7
+
 		self.x_cm_inc = 0
+
 		for i in range(151):
 			if i%10==0:   self.vern_canvas.create_line(200 + self.x_cm_inc, 210, 200 + self.x_cm_inc, 185); self.x_cm_inc += 5
 			elif i%10==5: self.vern_canvas.create_line(200 + self.x_cm_inc, 210, 200 + self.x_cm_inc, 190); self.x_cm_inc += 5
@@ -66,11 +88,18 @@ class Vernier_Callipers():
 		#dynamic part-arc
 		self.vern_canvas.create_arc(self.arc_x0, self.arc_y0, self.arc_x1, self.arc_y1, start = 90)
 		#dynamic part-lines
-		self.vern_canvas.create_line(self.ax,self.ay,self.bx,self.by,self.cx,self.cy,self.dx,self.dy,self.ax,self.ay,self.ex,self.ey,self.fx,self.fy,self.gx,self.gy,self.hx,self.hy,self.ix,self.iy,self.ex,self.ey,self.jx,self.jy,self.cx,self.cy, width=1.4)
+		self.vern_canvas.create_line(self.ax,self.ay,self.bx,self.by,self.cx,self.cy,self.dx,
+			self.dy,self.ax,self.ay,self.ex,self.ey,self.fx,self.fy,self.gx,self.gy,self.hx,
+			self.hy,self.ix,self.iy,self.ex,self.ey,self.jx,self.jy,self.cx,self.cy, width=1.4)
+
 		#dynamic part-scale body
-		self.vern_canvas.create_line(self.useless_ax,self.useless_ay,self.useless_cx,self.useless_cy,self.useless_dx,self.useless_dy,self.useless_bx,self.useless_by,width=1.4)
+		self.vern_canvas.create_line(self.useless_ax,self.useless_ay,self.useless_cx,
+			self.useless_cy,self.useless_dx,self.useless_dy,self.useless_bx,self.useless_by,width=1.4)
+
 		#dynamic part-scale body
-		for i in range(11): self.vern_canvas.create_line(self.x1_vern + self.x_vern_inc, 230, self.x2_vern + self.x_vern_inc, 210); self.x_vern_inc+=4.5
+		for i in range(11): 
+			self.vern_canvas.create_line(self.x1_vern + self.x_vern_inc, 230, self.x2_vern + self.x_vern_inc, 210); 
+			self.x_vern_inc+=4.5
 
 	#=====================================================================================================================  
 
@@ -85,8 +114,12 @@ class Vernier_Callipers():
 		self.vern_canvas.bind("<Motion>", moved); tag = self.vern_canvas.create_text(10, 10, text="", anchor="nw")
 
 		#drawing the cylinder
-		try: self.dia = float(self.R)*2*50;  self.hig = float(self.H)*50
-		except: self.dia = 2*2*50; self.hig = 4*2*50
+		try: 
+			self.dia = float(self.R)*2*50; 
+			self.hig = float(self.H)*50;
+		except: 
+			self.dia = 2*2*50; 
+			self.hig = 4*2*50;
 
 		if self.which_opt == 'width':
 			self.vern_canvas.create_oval(145, 245, 145+self.dia, 275); self.vern_canvas.create_line(145, 260, 145, 360)
@@ -105,15 +138,29 @@ class Vernier_Callipers():
 
 		self.vern_canvas.create_arc(70, 50, 140, 190, start = 0)
 
-		self.px1= 60; self.py1=120;  self.px2=970; self.py2=120;    self.px3=970; py3=210;  px4=145; py4=210
-		self.px5=145; self.py5=310;  self.px6=130; self.py6=310;    self.px7=100; py7=245;  px8=100; py8=210;    px9= 60; py9=210;
-		self.vern_canvas.create_line(self.px1,self.py1, self.px2,self.py2,self.px3,self.py3,self.px4,self.py4,self.px5,self.py5,self.px6,self.py6,self.px7,self.py7,self.px8,self.py8,self.px4,self.py4,self.px9,self.py9,self.px1,self.py1,width=1.4)
+		self.px1= 60; self.py1=120; 
+		self.px2=970; self.py2=120; 
+		self.px3=970; self.py3=210; 
+		self.px4=145; self.py4=210
+		self.px5=145; self.py5=310; 
+		self.px6=130; self.py6=310; 
+		self.px7=100; self.py7=245; 
+		self.px8=100; self.py8=210; 
+		self.px9= 60; py9=210;
+
+		self.vern_canvas.create_line(self.px1,self.py1, self.px2,self.py2,self.px3,
+			self.py3,self.px4,self.py4,self.px5,self.py5,self.px6,self.py6,self.px7,
+			self.py7,self.px8,self.py8,self.px4,self.py4,self.px9,self.py9,self.px1,self.py1,width=1.4)
+
 		self.x_cm_inc = 0
+		
 		for i in range(60):
 			if i%10==0:             self.vern_canvas.create_line(200 + self.x_cm_inc, 140, 200 + self.x_cm_inc, 120); self.x_cm_inc += 12.7
 			elif i%10 in (2,4,6,8): self.vern_canvas.create_line(200 + self.x_cm_inc, 130, 200 + self.x_cm_inc, 120); self.x_cm_inc += 12.7
 			else:                   self.vern_canvas.create_line(200 + self.x_cm_inc, 125, 200 + self.x_cm_inc, 120); self.x_cm_inc += 12.7
+		
 		self.x_cm_inc = 0
+		
 		for i in range(151):
 			if i%10==0:   self.vern_canvas.create_line(200 + self.x_cm_inc, 210, 200 + self.x_cm_inc, 185); self.x_cm_inc += 5
 			elif i%10==5: self.vern_canvas.create_line(200 + self.x_cm_inc, 210, 200 + self.x_cm_inc, 190); self.x_cm_inc += 5
@@ -131,14 +178,22 @@ class Vernier_Callipers():
 		self.useless_ax=160+self.sit+30; self.useless_bx=300+self.sit+30; self.useless_cx=160+self.sit+30; self.useless_dx=300+self.sit+30;
 
 		#dynamic part-arc
-		self.arc_x0=70+self.sit+30; self.arc_x1=140+self.sit+30
-		self.vern_canvas.create_arc(self.arc_x0, self.arc_y0, self.arc_x1, self.arc_y1, start = 90)
+		self.arc_x0=70+self.sit+30; 
+		self.arc_x1=140+self.sit+30;
+
+		self.vern_canvas.create_arc(self.arc_x0, self.arc_y0, self.arc_x1, self.arc_y1, start = 90);
 		#dynamic part-lines
-		self.vern_canvas.create_line(self.ax,self.ay,self.bx,self.by,self.cx,self.cy,self.dx,self.dy,self.ax,self.ay, self.ex,self.ey,self.fx,self.fy,self.gx,self.gy,self.hx,self.hy,self.ix,self.iy, self.ex,self.ey, self.jx,self.jy,self.cx,self.cy,width=1.4)
+		self.vern_canvas.create_line(self.ax,self.ay,self.bx,self.by,self.cx,self.cy,
+			self.dx,self.dy,self.ax,self.ay, self.ex,self.ey,self.fx,self.fy,self.gx,
+			self.gy,self.hx,self.hy,self.ix,self.iy, self.ex,self.ey, self.jx,self.jy,self.cx,self.cy,width=1.4)
+
 		#dynamic part-scale upper body
-		self.vern_canvas.create_line(self.useless_ax,self.useless_ay,self.useless_cx,self.useless_cy,self.useless_dx,self.useless_dy,self.useless_bx,self.useless_by,width=1.4)
+		self.vern_canvas.create_line(self.useless_ax,self.useless_ay,self.useless_cx,
+			self.useless_cy,self.useless_dx,self.useless_dy,self.useless_bx,self.useless_by,width=1.4)
+		
 		#dynamic part-scale lower body
 		self.x1_vern = 160+self.sit+30+40; self.x2_vern = 160+self.sit+30+40; self.x_vern_inc = 0
+
 		for i in range(11): self.vern_canvas.create_line(self.x1_vern + self.x_vern_inc, 230, self.x2_vern + self.x_vern_inc, 210);  self.x_vern_inc += 4.5  
 		#except: pass
 
@@ -146,17 +201,22 @@ class Vernier_Callipers():
 		if self.var.get()==1:   self.which_opt='width'
 		elif self.var.get()==2: self.which_opt='height'
 
-	def __init__(self, master, setup_val, R, h):
 	#def __init__(self, setup_val, R, h):
-		self.arc_x0 = 70;       self.arc_y0 = 50;               self.arc_x1 = 140; self.arc_y1 = 190
-		self.x_stop_left = 145; self.x_stop_right = 850
-		self.dia=0;             self.hig=0;                     self.which_opt=''
+	def __init__(self, master, setup_val, R, h): 
+		self.arc_x0 = 70; 
+		self.arc_y0 = 50; 
+		self.arc_x1 = 140; self.arc_y1 = 190
+		self.x_stop_left = 145; 
+		self.x_stop_right = 850
+		self.dia=0; 
+		self.hig=0; 
+		self.which_opt=''
 		self.R = R
 		self.H = h
 
 		#self.vern_root = Tk(); 
 		self.vern_root = Toplevel(master); 
-		self.vern_root.geometry('1000x600'); self.vern_root.resizable(0,0); self.vern_root.iconbitmap('AEC_logo.ico')
+		self.vern_root.geometry('1000x600'); self.vern_root.resizable(0,0); self.vern_root.iconbitmap('..\\img\\logos-and-icons\\AEC_logo.ico')
 		try: self.vern_root.title('Vernier Callipers: Measurement number: ' + str(setup_val))
 		except: self.vern_root.title('Vernier Callipers')
 
@@ -173,9 +233,19 @@ class Vernier_Callipers():
 		self.vern_canvas.create_arc(70, 50, 140, 190, start = 0)
 		self.vern_canvas.create_arc(70, 50, 140, 190, start = 90)
 
-		self.px1= 60; self.py1=120;  self.px2=970; self.py2=120;    self.px3=970; self.py3=210;  self.px4=145; self.py4=210
-		self.px5=145; self.py5=310;  self.px6=130; self.py6=310;    self.px7=100; self.py7=245;  self.px8=100; self.py8=210;    self.px9= 60; self.py9=210;
-		self.vern_canvas.create_line(self.px1,self.py1, self.px2,self.py2,self.px3,self.py3,self.px4,self.py4,self.px5,self.py5,self.px6,self.py6,self.px7,self.py7,self.px8,self.py8,self.px4,self.py4,self.px9,self.py9,self.px1,self.py1,width=1.4)
+		self.px1= 60; self.py1=120;  
+		self.px2=970; self.py2=120;    
+		self.px3=970; self.py3=210;  
+		self.px4=145; self.py4=210
+		self.px5=145; self.py5=310;  
+		self.px6=130; self.py6=310;    
+		self.px7=100; self.py7=245;  
+		self.px8=100; self.py8=210;    
+		self.px9= 60; self.py9=210;
+
+		self.vern_canvas.create_line(self.px1,self.py1, self.px2,self.py2,
+			self.px3,self.py3,self.px4,self.py4,self.px5,self.py5,self.px6,self.py6,
+			self.px7,self.py7,self.px8,self.py8,self.px4,self.py4,self.px9,self.py9,self.px1,self.py1,width=1.4)
 
 		self.x_cm_inc = 0
 		for i in range(60):
@@ -190,17 +260,37 @@ class Vernier_Callipers():
 				self.label = Label(self.vern_canvas, text=str(i//10), font=("Courier", 10, 'bold'), bg='white'); 
 				self.label.pack(); self.label.place(x=200+self.x_cm_inc-5, y=165)
 				self.x_cm_inc += 5
+
 			elif i%10==5: self.vern_canvas.create_line(200 + self.x_cm_inc, 210, 200 + self.x_cm_inc, 190);  self.x_cm_inc += 5
 			else:         self.vern_canvas.create_line(200 + self.x_cm_inc, 210, 200 + self.x_cm_inc, 195);  self.x_cm_inc += 5
 
-		self.useless_ax=160; self.useless_ay=120; self.useless_bx=300; self.useless_by=120; self.useless_cx=160; self.useless_cy=100; self.useless_dx=300; self.useless_dy=100
-		self.vern_canvas.create_line(self.useless_ax, self.useless_ay, self.useless_cx, self.useless_cy, self.useless_dx, self.useless_dy, self.useless_bx, self.useless_by, width=1.4)
+		self.useless_ax=160; self.useless_ay=120; 
+		self.useless_bx=300; self.useless_by=120; 
+		self.useless_cx=160; self.useless_cy=100; 
+		self.useless_dx=300; self.useless_dy=100;
 
-		self.ax = 160; self.ay = 210;    self.bx = 300; self.by = 210;    self.cx = 300; self.cy = 230;    self.dx = 160; self.dy = 230;    self.ex = 160; self.ey = 245;  
-		self.fx = 145; self.fy = 245;    self.gx = 145; self.gy = 310;    self.hx = 160; self.hy = 310;    self.ix = 190; self.iy = 245;    self.jx = 300; self.jy = 245
-		self.vern_canvas.create_line(self.ax,self.ay,self.bx,self.by,self.cx,self.cy,self.dx,self.dy,self.ax,self.ay,self.ex,self.ey,self.fx,self.fy,self.gx,self.gy,self.hx,self.hy,self.ix,self.iy,self.ex,self.ey,self.jx,self.jy,self.cx,self.cy,width=1.4)
+		self.vern_canvas.create_line(self.useless_ax, self.useless_ay, 
+			self.useless_cx, self.useless_cy, self.useless_dx, self.useless_dy, self.useless_bx, self.useless_by, width=1.4)
+
+		self.ax = 160; self.ay = 210;    
+		self.bx = 300; self.by = 210;    
+		self.cx = 300; self.cy = 230;    
+		self.dx = 160; self.dy = 230;    
+		self.ex = 160; self.ey = 245;  
+		self.fx = 145; self.fy = 245;    
+		self.gx = 145; self.gy = 310;    
+		self.hx = 160; self.hy = 310;    
+		self.ix = 190; self.iy = 245;    
+		self.jx = 300; self.jy = 245;
+
+		self.vern_canvas.create_line(self.ax,self.ay,self.bx,self.by,self.cx,self.cy,
+			self.dx,self.dy,self.ax,self.ay,self.ex,self.ey,self.fx,self.fy,self.gx,
+			self.gy,self.hx,self.hy,self.ix,self.iy,self.ex,self.ey,self.jx,self.jy,self.cx,self.cy,width=1.4)
+
 		self.x1_vern = 200; self.x2_vern = 200; self.x_vern_inc = 0
-		for i in range(11): self.vern_canvas.create_line(self.x1_vern + self.x_vern_inc, 230, self.x2_vern + self.x_vern_inc, 210);  self.x_vern_inc += 4.5
+		for i in range(11): 
+			self.vern_canvas.create_line(self.x1_vern + self.x_vern_inc, 230, self.x2_vern + self.x_vern_inc, 210); 
+			self.x_vern_inc += 4.5
 	        
 	    #====================================================================================================
 	        

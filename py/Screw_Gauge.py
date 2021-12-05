@@ -1,4 +1,6 @@
-from tkinter import *; from os import getcwd, startfile; import webbrowser; #from sys import argv
+from tkinter import *
+from os import startfile
+import webbrowser;  #from sys import argv
 
 class Scale():
     def __init__(self, data):
@@ -9,7 +11,7 @@ class Scale():
 
 class Screw_Gauge():
     def instruction_butt(self):
-        startfile('Screw Gauge.pdf')
+        startfile('..\\pdfs\\Screw Gauge.pdf')
         #webbrowser.open("https://www.youtube.com/watch?v=07d2dXHYb94", new=1)
 
     def apply_func(self, instr):
@@ -129,7 +131,7 @@ class Screw_Gauge():
         self.root = Tk()
         self.root.geometry("1000x600"); 
         self.root.title("Screw Guage: Measurement number: " + str(setup_val) ); self.root.resizable(0,0)
-        self.root.iconbitmap(getcwd() + '\\AEC_logo.ico')
+        self.root.iconbitmap('..\\img\\logos-and-icons\\AEC_logo.ico')
 
         self.canvas = Canvas(self.root,bg="lemon chiffon"); self.canvas.pack(fill = 'both', expand=1); 
         def moved(event): self.canvas.itemconfigure(tag, text="(%r, %r)" % (event.x, event.y))
@@ -139,17 +141,35 @@ class Screw_Gauge():
         self.label1 = None; self.label2 = None; self.label3 = None; self.applied = 0    # label1, label2, label3 may be needed as class variables.
         #dynamic part.
         #movableself. part on the right side.
-        self.px=720;self.py=160;  self.qx=650;self.qy=180;  self.rx=650;self.ry=280;  self.sx=720;self.sy=300;  self.tx=980;self.ty=300;  self.ux=980;self.uy=160;   #->global
+        self.px=720; self.py=160;  
+        self.qx=650; self.qy=180;  
+        self.rx=650; self.ry=280;  
+        self.sx=720; self.sy=300;  
+        self.tx=980; self.ty=300;  
+        self.ux=980;self.uy=160;   #->global
+
         self.canvas.create_line(self.px,self.py, self.qx,self.qy, self.rx,self.ry, self.sx,self.sy, self.tx,self.ty, self.ux,self.uy, self.px,self.py,self.sx,self.sy)
         self.grab_x = 345
         self.canvas.create_line(355,200, self.grab_x,200, self.grab_x,260, 355,260)
 
-        self.head = Scale(0); self.head.next = Scale(10); self.head.next.next = Scale(20); self.head.next.next.next = Scale(30); self.head.next.next.next.next = Scale(40); 
-        self.head.next.next.next.next.next = Scale(50); self.head.next.next.next.next.next.next = Scale(60); self.head.next.next.next.next.next.next.next = Scale(70)
-        self.head.next.next.next.next.next.next.next.next = Scale(80); self.head.next.next.next.next.next.next.next.next.next = Scale(90)
+        self.head = Scale(0) 
+        self.head.next = Scale(10) 
+        self.head.next.next = Scale(20) 
+        self.head.next.next.next = Scale(30) 
+        self.head.next.next.next.next = Scale(40) 
+        self.head.next.next.next.next.next = Scale(50) 
+        self.head.next.next.next.next.next.next = Scale(60) 
+        self.head.next.next.next.next.next.next.next = Scale(70)
+        self.head.next.next.next.next.next.next.next.next = Scale(80); 
+        self.head.next.next.next.next.next.next.next.next.next = Scale(90)
         self.head.next.next.next.next.next.next.next.next.next.next = self.head
-        tempo = self.head; count = 10
-        while count: tempo.next.prev = tempo; tempo = tempo.next; count-=1
+        tempo = self.head
+        count = 10
+        while count: 
+            tempo.next.prev = tempo
+            tempo = tempo.next
+            count-=1
+            
         self.temp = self.head
 
         #circular scale division 21

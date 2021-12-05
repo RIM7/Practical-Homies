@@ -1,15 +1,14 @@
 from tkinter import *
 import tkinter as tk
-import webbrowser;
 import sys
-from os import startfile
+from os import startfile  #import webbrowser;
 
 #print('Numberofarguments:',len(sys.argv),'arguments.')#print('ArgumentList:',str(sys.argv))#print('ArguList:',type(sys.argv))
 
 class Vernier_Callipers_Main():
 
 	def instr_window(self):
-		startfile('Vernier Callipers.pdf')
+		startfile('..\\pdfs\\Vernier Callipers.pdf')
 		#webbrowser.open("https://www.youtube.com/watch?v=07d2dXHYb94", new=1)
 
 	def direction_button(self,direction):
@@ -158,7 +157,7 @@ class Vernier_Callipers_Main():
 
 		self.vern_root = Toplevel(master);
 		#self.vern_root = Tk();
-		self.vern_root.geometry('1000x600'); self.vern_root.resizable(0,0); self.vern_root.iconbitmap('AEC_logo.ico')
+		self.vern_root.geometry('1000x600'); self.vern_root.resizable(0,0); self.vern_root.iconbitmap('..\\img\\logos-and-icons\\AEC_logo.ico')
 		try: self.vern_root.title('Vernier Callipers: Measurement number: ' + str(setup_val))
 		except: self.vern_root.title('Vernier Callipers')
 

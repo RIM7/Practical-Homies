@@ -15,7 +15,7 @@ class Frank_Hertz():
         return number
 
     def instr(self):
-        startfile('Frank-Hertz.pdf')
+        startfile('..\\pdfs\\Frank-Hertz.pdf')
 
     def on(self):
         self.filament_knob.configure(image = self.filament_on)
@@ -111,7 +111,7 @@ class Frank_Hertz():
 
         #self.root = Tk()
         self.root = Toplevel(master);self.root.geometry("1000x600");
-        self.root.title("Frank Hertz");self.root.resizable(0,0);self.root.iconbitmap(getcwd()+'\\AEC_logo.ico')
+        self.root.title("Frank Hertz");self.root.resizable(0,0);self.root.iconbitmap('..\\img\\logos-and-icons\\AEC_logo.ico')
 
         self.canvas1 = Canvas(self.root, width=200, bg="peach puff3"); self.canvas1.pack(side='left', fill = 'both', expand=1); 
         def moved(event): self.canvas1.itemconfigure(tag, text="(%r, %r)" % (event.x, event.y))
@@ -151,10 +151,10 @@ class Frank_Hertz():
 
         #canvas2===========================================================================================================
 
-        self.img0 = ImageTk.PhotoImage(Image.open('Frank_Hertz_0.jpg')); self.panel=Label(self.canvas2,image=self.img0,bd=0); self.panel.place(x=5,y=-50)
+        self.img0 = ImageTk.PhotoImage(Image.open('..\\img\\frank-hertz\\Frank_Hertz_0.jpg')); self.panel=Label(self.canvas2,image=self.img0,bd=0); self.panel.place(x=5,y=-50)
 
-        self.filament_off = ImageTk.PhotoImage(Image.open(getcwd() + '\\filament_off.jpg').resize((74, 74), Image.ANTIALIAS))
-        self.filament_on  = ImageTk.PhotoImage(Image.open(getcwd() + '\\filament_on.jpg').resize((74, 74), Image.ANTIALIAS))
+        self.filament_off = ImageTk.PhotoImage(Image.open('..\\img\\frank-hertz\\filament_off.jpg').resize((74, 74), Image.ANTIALIAS))
+        self.filament_on  = ImageTk.PhotoImage(Image.open('..\\img\\frank-hertz\\filament_on.jpg').resize((74, 74), Image.ANTIALIAS))
         self.filament_knob = Label(self.canvas2,image=self.filament_off,bd=0); self.filament_knob.place(x=224,y=259)
 
         self.off()
@@ -170,9 +170,9 @@ class Frank_Hertz():
 
         #print(self.change_of_scale1, self.change_of_scale2)
 
-        self.img9 = ImageTk.PhotoImage(Image.open('Frank_Hertz_9.jpg'))
-        self.img8 = ImageTk.PhotoImage(Image.open('Frank_Hertz_8.jpg'))
-        self.img7 = ImageTk.PhotoImage(Image.open('Frank_Hertz_7.jpg'))
+        self.img9 = ImageTk.PhotoImage(Image.open('..\\img\\frank-hertz\\Frank_Hertz_9.jpg'))
+        self.img8 = ImageTk.PhotoImage(Image.open('..\\img\\frank-hertz\\Frank_Hertz_8.jpg'))
+        self.img7 = ImageTk.PhotoImage(Image.open('..\\img\\frank-hertz\\Frank_Hertz_7.jpg'))
   
         self.root.mainloop()
 

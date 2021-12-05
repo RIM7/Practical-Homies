@@ -2,17 +2,17 @@ from tkinter import *; from tkinter import font
 from time import sleep
 from random import randint
 from PIL import ImageTk, Image
-from os import getcwd, startfile
+from os import startfile
 
-class Resistance_by_four_probe():
+class Resistance_by_Four_Probe():
     milliAmp = 0.0; Volt = 0.0; diff = 0.0; diff_of_diff = 0.0; i_temp = 25; Temperature=0.0; run_flag=0; wait_clicked=0
 
     def instr(self):
-        startfile('Four Probe.pdf')
+        startfile('..\\pdfs\\Four Probe.pdf')
 
     def setup(self): 
         #global milliAmp, Temperature, Volt, diff, i_temp, run_flag
-        self.milliAmp    = self.mA.get(); 
+        self.milliAmp = self.mA.get(); 
         self.Temperature = self.temp.get(); 
         self.i_temp = 25; 
         self.Volt = 0.0291 * self.milliAmp; 
@@ -33,33 +33,43 @@ class Resistance_by_four_probe():
         else: self.wait_clicked=0
         
         if self.run_flag==1 and self.i_temp<=self.Temperature:
-            if self.i_temp==31: self.diff += 0.00012 * self.milliAmp
+            if self.i_temp==31: 
+                self.diff += 0.00012 * self.milliAmp
             elif self.i_temp >= 36 and self.i_temp%5==1:
-                if self.milliAmp < 10: self.diff -= randint(1, 3) / 10000
-                else: self.diff -= randint(3, 6) / 10000
+                if self.milliAmp < 10: 
+                    self.diff -= randint(1, 3) / 10000
+                else: 
+                    self.diff -= randint(3, 6) / 10000
+
             if self.i_temp<=30:
                 if self.i_temp==25 or self.i_temp==26:
-                    self.show_mV.configure(text=str(round(self.Volt,4))); self.show_oven.configure(text=str(float(self.i_temp)))
+                    self.show_mV.configure(text=str(round(self.Volt,4))) 
+                    self.show_oven.configure(text=str(float(self.i_temp)))
                 else:
-                    self.Volt = self.Volt - self.diff / 4
-                    self.show_mV.configure(text=str(round(self.Volt,4))); self.show_oven.configure(text=str(float(self.i_temp)))
+                    self.Volt = self.Volt - self.diff / 4;
+                    self.show_mV.configure(text=str(round(self.Volt,4))) 
+                    self.show_oven.configure(text=str(float(self.i_temp)))
             else:
-                self.Volt = self.Volt - self.diff / 5
-                self.show_mV.configure(text=str(round(self.Volt,4))); self.show_oven.configure(text=str(float(self.i_temp)))
+                self.Volt = self.Volt - self.diff / 5;
+                self.show_mV.configure(text=str(round(self.Volt,4))) 
+                self.show_oven.configure(text=str(float(self.i_temp)))
             
             self.i_temp+=1   
             
             self.root.after(2000, self.runner)
             
-        if self.i_temp>self.Temperature: self.run['state']='disabled'; self.wait['state']='disabled' 
+        if self.i_temp>self.Temperature: 
+            self.run['state']='disabled' 
+            self.wait['state']='disabled' 
 
     def wait(self): 
         #global run_flag, wait_clicked; 
-        self.run_flag=0; self.wait_clicked=1
+        self.run_flag=0
+        self.wait_clicked=1
 
     def __init__(self,master):
         self.root = Toplevel(master); self.root.geometry("1000x600"); self.root.title("Resistance by Four Probe Method"); self.root.resizable(0,0); 
-        self.root.iconbitmap(getcwd() + '\\AEC_logo.ico')
+        self.root.iconbitmap('..\\img\\logos-and-icons\\AEC_logo.ico')
 
         self.canvas1 = Canvas(self.root, width=200, bg="peach puff3"); self.canvas1.pack(side='left', fill = 'both', expand=1); 
         def moved(event): self.canvas1.itemconfigure(tag, text="(%r, %r)" % (event.x, event.y))
@@ -69,7 +79,8 @@ class Resistance_by_four_probe():
         def moved(event): self.canvas2.itemconfigure(tag, text="(%r, %r)" % (event.x, event.y))
         self.canvas2.bind("<Motion>", moved); tag = self.canvas2.create_text(10, 10, text="", anchor="nw")
 
-        self.img1 = ImageTk.PhotoImage(Image.open('resistivity_by_four_probe.jpg')); self.panel=Label(self.canvas2,image=self.img1); 
+        self.img1 = ImageTk.PhotoImage(Image.open('..\\img\\res-by-four-probe\\resistivity_by_four_probe.jpg')); 
+        self.panel=Label(self.canvas2,image=self.img1); 
         self.panel.place(x=2,y=0)
 
         #canvas1
@@ -95,14 +106,17 @@ class Resistance_by_four_probe():
 
         self.l=Label(self.canvas1,text='Other parameters to be assumed:',font=('Courier',12,'bold'),bg='peach puff3',justify='left')
         self.l.place(x=25,y=410); f = font.Font(self.l, self.l.cget("font")); f.configure(underline=True); self.l.configure(font=f)
+
         self.l=Label(self.canvas1,text='Selected material: Germanium\nRange of oven: x1\nRange of voltmeter: 1V',bg='peach puff3',justify='left')
         self.l.config(font=('Courier',12)); self.l.place(x=25, y=440)
 
         #canvas2
         self.show_mA=Label(self.canvas2,text='00.00',font=('Courier',12,'bold'),bg='black',fg='cyan',justify='left')
         Label(self.canvas2,text='0.0000',font=('Courier',12,'bold'),bg='black',fg='cyan',justify='left').place(x=522,y=193)
+
         self.show_mV=Label(self.canvas2,text='0.0000',font=('Courier',12,'bold'),bg='black',fg='cyan',justify='left')
         Label(self.canvas2,text='00.00',font=('Courier',12,'bold'),bg='black',fg='cyan',justify='left').place(x=197,y=438)
+
         self.show_oven=Label(self.canvas2,text='00.0',font=('Courier',12,'bold'),bg='black',fg='cyan',justify='left')
         self.show_mA.place(x=57,y=196); self.show_mV.place(x=520,y=193); self.show_oven.place(x=195,y=438)
 
@@ -125,4 +139,4 @@ class Resistance_by_four_probe():
 
         self.root.mainloop()
 
-#res_by_four_probe = Resistance_by_four_probe(None)
+#res_by_four_probe = Resistance_by_Four_Probe(None)

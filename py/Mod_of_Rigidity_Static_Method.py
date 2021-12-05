@@ -1,13 +1,14 @@
-from tkinter import *;  from tkinter import font;
+from tkinter import *
+from tkinter import font;
 import numpy as np
 from PIL import ImageTk, Image
-from os import getcwd, startfile
+from os import startfile
 
 
 
 class Modulus_of_Rigidity_Static():
     def instr(self):
-        startfile('Modulus of rigidity static method.pdf')
+        startfile('..\\pdfs\\Modulus of rigidity static method.pdf')
 
     def clicked(self):
         if self.length.get()!='':
@@ -86,7 +87,7 @@ class Modulus_of_Rigidity_Static():
         self.x_dense=200+160*np.cos(self.t1);self.y_dense=550+160*np.sin(self.t1);self.x_dense=self.x_dense[105:285];self.y_dense=self.y_dense[105:285]
 
         #self.root = Tk();
-        self.root = Toplevel(master); self.root.geometry('1100x600'); self.root.resizable(0, 0); self.root.iconbitmap(getcwd() + '\\AEC_logo.ico')
+        self.root = Toplevel(master); self.root.geometry('1100x600'); self.root.resizable(0, 0); self.root.iconbitmap('..\\img\\logos-and-icons\\AEC_logo.ico')
         self.root.title('Determination of modulus of rigidity using static method')
         #root.iconbitmap()
         #self.frame = Frame(root); frame.pack(fill='both', expand = True)
@@ -130,13 +131,13 @@ class Modulus_of_Rigidity_Static():
         #Add the labels here. label1, movable -> add the given images.
         #img = ImageTk.PhotoImage(Image.open(getcwd() + '\\Mod_of_Rig_Stat_Method.png'))
         
-        self.img1 = ImageTk.PhotoImage(Image.open('Mod_of_Rig_Stat_Method.jpg').resize((640, 310), Image.ANTIALIAS));
+        self.img1 = ImageTk.PhotoImage(Image.open('..\\img\\modulus-of-rigidity\\Mod_of_Rig_Stat_Method.jpg').resize((640, 310), Image.ANTIALIAS));
         self.panel=Label(self.canvas2,image=self.img1,bd=0); self.panel.place(x=110,y=5)
-        self.img2 = ImageTk.PhotoImage(Image.open('Movable_2nd_ptr.jpg').resize((105, 169), Image.ANTIALIAS));
+        self.img2 = ImageTk.PhotoImage(Image.open('..\\img\\modulus-of-rigidity\\Movable_2nd_ptr.jpg').resize((105, 169), Image.ANTIALIAS));
         self.panel2=Label(self.canvas2,image=self.img2,bd=0); self.panel2.place(x=320,y=30)
 
-        self.img3 = ImageTk.PhotoImage(Image.open('unit_weight.jpg').resize((50, 12), Image.ANTIALIAS));
-        self.img4 = ImageTk.PhotoImage(Image.open('unit_weight_dummy.jpg').resize((1, 1), Image.ANTIALIAS));
+        self.img3 = ImageTk.PhotoImage(Image.open('..\\img\\modulus-of-rigidity\\unit_weight.jpg').resize((50, 12), Image.ANTIALIAS));
+        self.img4 = ImageTk.PhotoImage(Image.open('..\\img\\modulus-of-rigidity\\unit_weight_dummy.jpg').resize((1, 1), Image.ANTIALIAS));
 
         self.weight1=Label(self.canvas2,image=self.img4,bd=0); self.weight1.place(x=700,y=286)
         self.weight2=Label(self.canvas2,image=self.img4,bd=0); self.weight2.place(x=700,y=274)
@@ -178,4 +179,3 @@ class Modulus_of_Rigidity_Static():
             
             
         self.root.mainloop()
-

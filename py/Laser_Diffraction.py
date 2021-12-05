@@ -1,13 +1,13 @@
 from tkinter import *; import tkinter as tk; from tkinter import font;
 from PIL import ImageTk, Image
-from os import chdir, path, getcwd, system, startfile
+from os import chdir, path, system, startfile
 #import math
 #from threading import Thread
 
 
 class Laser_Diffraction():
     def las_dif_instr_func(self):
-        startfile('Laser Diffraction.pdf')
+        startfile('..\\pdfs\\Laser Diffraction.pdf')
     def on(self):
         self.panel.configure(image=self.img2);
         pass
@@ -73,7 +73,7 @@ class Laser_Diffraction():
         self.root = Toplevel(master); 
         self.root.geometry("1000x600"); 
         self.root.title("Determination of Wavelength of Laser Light Using Plane Transmission Diffraction Grating"); 
-        self.root.iconbitmap('AEC_logo.ico')
+        self.root.iconbitmap('..\\img\\logos-and-icons\\AEC_logo.ico')
         self.root.resizable(0, 0)
         self.frame = Frame(self.root); self.frame.pack(fill='both', expand = True)
 
@@ -82,8 +82,8 @@ class Laser_Diffraction():
         def moved(event): self.canvas1.itemconfigure(tag, text="(%r, %r)" % (event.x, event.y))
         self.canvas1.bind("<Motion>", moved); tag = self.canvas1.create_text(10, 10, text="", anchor="nw")  #nw = north-west
 
-        self.img1=ImageTk.PhotoImage(Image.open('g_Laser_Diffraction_Grating_off.jpg').resize((550, 200), Image.ANTIALIAS))
-        self.img2=ImageTk.PhotoImage(Image.open('g_Laser_Diffraction_Grating_on.jpg').resize((550, 200), Image.ANTIALIAS))
+        self.img1=ImageTk.PhotoImage(Image.open('..\\img\\laser-diffraction\\g_Laser_Diffraction_Grating_off.jpg').resize((550, 200), Image.ANTIALIAS))
+        self.img2=ImageTk.PhotoImage(Image.open('..\\img\\laser-diffraction\\g_Laser_Diffraction_Grating_on.jpg').resize((550, 200), Image.ANTIALIAS))
         self.panel=Label(self.canvas1,image=self.img1);self.panel.pack(side="bottom",fill="both",expand="yes");self.panel.place(x=430,y=40)
 
         self.label_erase = Label(self.canvas1, text='x =  ', font=('Courier', 10, 'bold'), bg='white');
