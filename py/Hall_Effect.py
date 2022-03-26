@@ -95,7 +95,7 @@ class Hall_Effect():
 			self.hall_current['state'] = 'normal'
 			self.show_curr_or_volt['state'] = 'normal'
 
-			image = self.canvas2.create_image(0, -5, image = self.bg_image_inserted_hall_effect_mA, anchor = NW)
+			image = self.canvas2.create_image(0, -5, image = self.bg_image_inserted_hall_effect_mV, anchor = NW)
 			flag = 1
 
 		elif self.insert_remove_probe['text']=='Remove Hall Probe':
@@ -121,10 +121,16 @@ class Hall_Effect():
 		self.canvas2.create_line(self.current_reading_coordinates[self.Amp.get()][0], self.current_reading_coordinates[self.Amp.get()][1], 170, 460)
 
 		if self.show_curr_or_volt['text'] == 'Show Current':
-			image = self.canvas2.create_image(0, -5, image = self.bg_image_inserted_hall_effect_mA, anchor = NW)
+			image = self.canvas2.create_image(0, -5, image = self.bg_image_inserted_hall_effect_mV, anchor = NW)
+			self.draw_circular_scale()
+			self.canvas2.create_line(self.current_reading_coordinates[self.Amp.get()][0], self.current_reading_coordinates[self.Amp.get()][1], 170, 460)
+			
 			self.current_voltage['text'] = round(self.hall_voltage_dict[self.hall_current.get()] * self.Amp.get() / (self.thickness.get() * 10), 3)
 		elif self.show_curr_or_volt['text'] == 'Show Voltage':
-			image = self.canvas2.create_image(0, -5, image = self.bg_image_inserted_hall_effect_mV, anchor = NW)
+			image = self.canvas2.create_image(0, -5, image = self.bg_image_inserted_hall_effect_mA, anchor = NW)
+			self.draw_circular_scale()
+			self.canvas2.create_line(self.current_reading_coordinates[self.Amp.get()][0], self.current_reading_coordinates[self.Amp.get()][1], 170, 460)
+
 			self.current_voltage['text'] = round(self.hall_current.get(), 3)
 
 	# ================================================================================================================================================
