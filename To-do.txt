@@ -1,3 +1,0 @@
-Change "mV" to "mA" switch issue in image.
-
-Change page-up-down issue with Hall Effect.
