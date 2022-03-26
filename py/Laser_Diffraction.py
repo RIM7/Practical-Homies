@@ -1,4 +1,5 @@
-from tkinter import *; import tkinter as tk; from tkinter import font;
+from tkinter import *
+import tkinter as tk; from tkinter import font
 from PIL import ImageTk, Image
 from os import chdir, path, system, startfile
 #import math

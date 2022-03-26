@@ -4,11 +4,15 @@ import numpy as np
 from PIL import ImageTk, Image
 from os import startfile
 
+from Screw_Gauge import Screw_Gauge
 
 
 class Modulus_of_Rigidity_Static():
     def instr(self):
         startfile('..\\pdfs\\Modulus of rigidity static method.pdf')
+
+    def measure_r(setup_val=1, r=0.251):
+        Screw_Gauge(setup_val, r)
 
     def clicked(self):
         if self.length.get()!='':
@@ -117,6 +121,7 @@ class Modulus_of_Rigidity_Static():
         self.label = Label(self.canvas1,text='Select the length\nbetween the scales:',font=('Courier',12,'bold'),bg='peach puff3',justify='left'); self.label.place(x=20,y=220)
         self.length = Entry(self.canvas1, font=('Courier', 12, 'bold')); self.length.place(x=20, y=270)
         
+        self.measure_r = Button(self.canvas1, text='Measure r', font=('Courier',12,'bold'), bg='peach puff3', command=self.measure_r); self.measure_r.place(x=70, y=306)
         self.ok = Button(self.canvas1, text='ok', font=('Courier',12,'bold'), bg='peach puff3', command=self.clicked); self.ok.place(x=190, y=306)
 
         self.l=Label(self.canvas1,text='Other parameters to be\nassumed:',font=('Courier',12,'bold'),bg='peach puff3',justify='left')
@@ -155,17 +160,28 @@ class Modulus_of_Rigidity_Static():
         #dynamic part of canvas2==============================================================================
         #center at 200, 550
         for i in range(len(self.x1)):
-            if i%10==0:    self.canvas2.create_line(self.x1[i], self.y1[i], self.x2[i], self.y2[i])
-            elif i%5 == 0: self.canvas2.create_line(self.x1[i], self.y1[i], self.x3[i], self.y3[i])
-            else:          self.canvas2.create_line(self.x1[i], self.y1[i], self.x4[i], self.y4[i])
+            if i%10==0:    
+                self.canvas2.create_line(self.x1[i], self.y1[i], self.x2[i], self.y2[i])
+            elif i%5 == 0: 
+                self.canvas2.create_line(self.x1[i], self.y1[i], self.x3[i], self.y3[i])
+            else:          
+                self.canvas2.create_line(self.x1[i], self.y1[i], self.x4[i], self.y4[i])
+        
         #center at 630, 550
         for i in range(len(self.x1)):
-            if i%10==0:    self.canvas2.create_line(self.x1[i]+430, self.y1[i], self.x2[i]+430, self.y2[i])
-            elif i%5 == 0: self.canvas2.create_line(self.x1[i]+430, self.y1[i], self.x3[i]+430, self.y3[i])
-            else:          self.canvas2.create_line(self.x1[i]+430, self.y1[i], self.x4[i]+430, self.y4[i])
+            if i%10==0:    
+                self.canvas2.create_line(self.x1[i]+430, self.y1[i], self.x2[i]+430, self.y2[i])
+            elif i%5 == 0: 
+                self.canvas2.create_line(self.x1[i]+430, self.y1[i], self.x3[i]+430, self.y3[i])
+            else:          
+                self.canvas2.create_line(self.x1[i]+430, self.y1[i], self.x4[i]+430, self.y4[i])
         #the initial pointer lines at 0.
-        self.x = 200 + 150 * np.cos(self.t); self.y = 550 + 150 * np.sin(self.t); self.x = self.x[35:96]; self.y = self.y[35:96]
-        self.canvas2.create_line(self.x[30], self.y[30], 200, 550, width=2); self.canvas2.create_line(self.x[30]+430, self.y[30], 630, 550, width=2)
+        self.x = 200 + 150 * np.cos(self.t); 
+        self.y = 550 + 150 * np.sin(self.t); 
+        self.x = self.x[35:96]; 
+        self.y = self.y[35:96]
+        self.canvas2.create_line(self.x[30], self.y[30], 200, 550, width=2); 
+        self.canvas2.create_line(self.x[30]+430, self.y[30], 630, 550, width=2)
 
         for i in range(len(self.x_dense)): self.canvas2.create_line(self.x_dense[i], self.y_dense[i], self.x_dense[i]+1, self.y_dense[i]+1, width=2)
         for i in range(len(self.x_dense)): self.canvas2.create_line(self.x_dense[i]+430, self.y_dense[i], self.x_dense[i]+431, self.y_dense[i]+1, width=2)
